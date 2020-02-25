@@ -1,3 +1,7 @@
+" Don't let polygot do python as there are specific plugins i'm using.
+let g:polyglot_disabled = ['python']
+
+
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
@@ -8,9 +12,14 @@ call plug#begin('~/.vim/plugged')
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 
+" Massive set of syntax highlights etc.
+Plug 'sheerun/vim-polyglot'
+
 " Multiple Plug commands can be written in a single line using | separators
 Plug 'vim-python/python-syntax'
 
+" Most Recently Used Files
+Plug 'vim-scripts/mru.vim'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree'
@@ -18,6 +27,7 @@ Plug 'scrooloose/nerdtree'
 " Python Stuff
 Plug 'vim-python/python-syntax'
 Plug 'jmcantrell/vim-virtualenv'
+Plug 'Vimjas/vim-python-pep8-indent'
 
 
 " Syntastic Checker
@@ -30,6 +40,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Git Commit View
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
+
 " Rainbow Paranthese, obviously
 Plug 'junegunn/rainbow_parentheses.vim'
 
@@ -41,7 +52,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'bling/vim-bufferline'
 
 
-" test two
+
 
 " Initialize plugin system
 call plug#end()
@@ -80,6 +91,9 @@ set encoding=utf-8
 
 highlight ExtraWhitespace ctermbg=red
 let g:better_whitespace_enabled=1
+
+
+
 
 " Set Default Window Behaviour
 set splitbelow
@@ -132,6 +146,8 @@ augroup rainbow_files
   autocmd FileType python,javascript,java RainbowParentheses
 augroup END
 
+" Nerdtree Behaviour Stuff
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
