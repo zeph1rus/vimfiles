@@ -93,6 +93,7 @@ highlight ExtraWhitespace ctermbg=red
 let g:better_whitespace_enabled=1
 
 
++:set guioptions-=T  "remove toolbar
 
 
 " Set Default Window Behaviour
