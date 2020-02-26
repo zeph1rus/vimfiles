@@ -126,6 +126,8 @@ set undodir=.vimtmp/,~/.vimtmp/,/tmp//
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+" clear search on Double Escp
+nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
 
 " Remap Window Navigation
 nnoremap <C-J> <C-W><C-J>
