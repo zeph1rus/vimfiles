@@ -92,9 +92,8 @@ set encoding=utf-8
 highlight ExtraWhitespace ctermbg=red
 let g:better_whitespace_enabled=1
 
-
-+:set guioptions-=T  "remove toolbar
-
+" remove toolbar in gvim
+set guioptions-=T  
 
 " Set Default Window Behaviour
 set splitbelow
