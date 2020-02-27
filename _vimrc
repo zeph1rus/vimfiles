@@ -142,6 +142,22 @@ map <C-n> :NERDTreeToggle<CR>
 nnoremap <space> za
 
 " AutoCmds
+" Python 'style' Parameters
+au BufNewFile,BufRead *.py,*.cpp,*.c,*.cs,*.h,*.rb,*.ps1,*.psm1,*.tf
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=130 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+" smaller tabstops
+"
+au BufNewFile,BufRead *.js,*.html,*.css,*.yaml,*.json,*.csproj,*.sln,*.xml
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2
+
 " Rainbow Parantheses
 augroup rainbow_files
   autocmd!
