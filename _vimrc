@@ -233,14 +233,6 @@ if has("gui")
   cnoremap <expr> <C-H> has("gui_running") ? "\<C-\>\<C-C>:promptrepl\<CR>" : "\<C-H>"
 endif
 
-" restore 'cpoptions'
-set cpo&
-if 1
-  let &cpoptions = s:save_cpo
-  unlet s:save_cpo
-endif
-
-
 
 " AutoCmds
 " Python 'style' Parameters
