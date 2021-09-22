@@ -42,7 +42,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 
 " Rainbow Paranthese, obviously
-Plug 'junegunn/rainbow_parentheses.vim'
 
 Plug 'tmhedberg/SimpylFold'
 Plug 'dracula/vim'
@@ -50,8 +49,10 @@ Plug 'baines/vim-colorscheme-thaumaturge'
 Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'bling/vim-bufferline'
-
-
+Plug 'guns/vim-clojure-static'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'tpope/vim-salve'
+Plug 'tpope/vim-fireplace'
 
 
 " Initialize plugin system
@@ -233,7 +234,10 @@ if has("gui")
   cnoremap <expr> <C-H> has("gui_running") ? "\<C-\>\<C-C>:promptrepl\<CR>" : "\<C-H>"
 endif
 
-
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 " AutoCmds
 " Python 'style' Parameters
 au BufNewFile,BufRead *.py,*.cpp,*.c,*.cs,*.h,*.rb,*.ps1,*.psm1,*.tf
