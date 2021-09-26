@@ -44,7 +44,6 @@ Plug 'junegunn/gv.vim'
 " Rainbow Paranthese, obviously
 
 Plug 'tmhedberg/SimpylFold'
-Plug 'dracula/vim'
 Plug 'baines/vim-colorscheme-thaumaturge'
 Plug 'ntpeters/vim-better-whitespace'
 
@@ -54,7 +53,12 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'tpope/vim-salve'
 Plug 'tpope/vim-fireplace'
 
+Plug 'hashivim/vim-terraform'
+Plug 'pearofducks/ansible-vim'
 
+" My Colorscheme
+"
+Plug 'zeph1rus/zephstyle-vim'
 " Initialize plugin system
 call plug#end()
 
@@ -72,7 +76,7 @@ behave mswin
 let s:uname = system("uname")
 if has('gui_running')
 	set background=dark
-	colorscheme dracula 	
+	colorscheme zephstyle
 	if has("win32")
 		set guifont=DejaVu_Sans_Mono_for_Powerline:h10:cDEFAULT
 	endif
@@ -80,9 +84,9 @@ if has('gui_running')
 		set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
 	endif
 else
-	colorscheme dracula 
+	colorscheme zephstyle
 endif
-set fillchars+=stl:\ ,stlnc:\ 
+set fillchars+=stl:\ ,stlnc:\
 let g:airline_theme='badwolf'
 let g:SimpylFold_docstring_preview=1
 let g:python_highlight_all = 1
@@ -90,15 +94,15 @@ let g:python_highlight_all = 1
 syntax on
 " Set Line Numbers On 
 set nu
-   
-let g:airline_powerline_fonts = 1 
+
+let g:airline_powerline_fonts = 1
 set encoding=utf-8
 
 highlight ExtraWhitespace ctermbg=red
 let g:better_whitespace_enabled=1
 
 " remove toolbar in gvim
-set guioptions-=T  
+set guioptions-=T
 
 " Set Default Window Behaviour
 set splitbelow
@@ -234,11 +238,6 @@ if has("gui")
   cnoremap <expr> <C-H> has("gui_running") ? "\<C-\>\<C-C>:promptrepl\<CR>" : "\<C-H>"
 endif
 
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-" AutoCmds
 " Python 'style' Parameters
 au BufNewFile,BufRead *.py,*.cpp,*.c,*.cs,*.h,*.rb,*.ps1,*.psm1,*.tf
     \ set tabstop=4 |
@@ -255,12 +254,6 @@ au BufNewFile,BufRead *.js,*.html,*.css,*.yaml,*.json,*.csproj,*.sln,*.xml
     \ set softtabstop=2 |
     \ set shiftwidth=2
 
-" Rainbow Parantheses
-augroup rainbow_files
-  autocmd!
-  autocmd FileType python,javascript,java RainbowParentheses
-augroup END
-
 " Nerdtree Behaviour Stuff
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd StdinReadPre * let s:std_in=1
@@ -273,3 +266,14 @@ if &term == "screen-256color"
      autocmd VimLeave * call system("tmux rename-window bash")
 endif
 
+
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+	if !exists("*synstack")
+		return
+	endif
+		echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
