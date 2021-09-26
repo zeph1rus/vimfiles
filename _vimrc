@@ -277,3 +277,5 @@ endfunc
 
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
+" fix wierd fills on status line. trailing space is deliberate
+set fillchars=stl:\ ,vert:\ 
