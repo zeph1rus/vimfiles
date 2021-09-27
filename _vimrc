@@ -279,3 +279,7 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 " fix wierd fills on status line. trailing space is deliberate
 set fillchars=stl:\ ,vert:\ 
+
+" add command to see diff between saved and buffer
+command Diff execute 'w !git diff --no-index % -'
+
